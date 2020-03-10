@@ -20,45 +20,47 @@ import seedu.address.model.expenditure.Expenditure;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * {@code ExpDeleteCommand}.
  */
-public class DeleteCommandTest {
+public class ExpDeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Expenditure expenditureToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Expenditure expenditureToDelete = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ExpDeleteCommand expDeleteCommand = new ExpDeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, expenditureToDelete);
+        String expectedMessage = String.format(seedu.address.logic.commands.expenditure.ExpDeleteCommand
+                .MESSAGE_DELETE_EXPENDITURE_SUCCESS, expenditureToDelete);
         ModelManager expectedModel = new ModelManager(model.getAccount(), new UserPrefs());
         expectedModel.deleteExpenditure(expenditureToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(expDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredExpenditureList().size() + 1);
+        ExpDeleteCommand expDeleteCommand = new ExpDeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(expDeleteCommand, model, Messages.MESSAGE_INVALID_EXPENDITURE_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Expenditure expenditureToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Expenditure expenditureToDelete = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ExpDeleteCommand expDeleteCommand = new ExpDeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, expenditureToDelete);
+        String expectedMessage = String.format(seedu.address.logic.commands.expenditure.ExpDeleteCommand
+                .MESSAGE_DELETE_EXPENDITURE_SUCCESS, expenditureToDelete);
         Model expectedModel = new ModelManager(model.getAccount(), new UserPrefs());
         expectedModel.deleteExpenditure(expenditureToDelete);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(expDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -67,23 +69,23 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAccount().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAccount().getExpenditureList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        ExpDeleteCommand expDeleteCommand = new ExpDeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(expDeleteCommand, model, Messages.MESSAGE_INVALID_EXPENDITURE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        ExpDeleteCommand deleteFirstCommand = new ExpDeleteCommand(INDEX_FIRST_PERSON);
+        ExpDeleteCommand deleteSecondCommand = new ExpDeleteCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        ExpDeleteCommand deleteFirstCommandCopy = new ExpDeleteCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -100,8 +102,8 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+        model.updateFilteredExpenditureList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredExpenditureList().isEmpty());
     }
 }

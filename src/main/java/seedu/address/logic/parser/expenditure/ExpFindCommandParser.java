@@ -4,31 +4,31 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.expenditure.FindCommand;
+import seedu.address.logic.commands.expenditure.ExpFindCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.expenditure.InfoContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new ExpFindCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class ExpFindCommandParser implements Parser<ExpFindCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ExpFindCommand
+     * and returns a ExpFindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public ExpFindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExpFindCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new InfoContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new ExpFindCommand(new InfoContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

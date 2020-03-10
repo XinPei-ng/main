@@ -44,15 +44,15 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedExpenditure);
 
         Model expectedModel = new ModelManager(new Account(model.getAccount()), new UserPrefs());
-        expectedModel.setExpenditure(model.getFilteredPersonList().get(0), editedExpenditure);
+        expectedModel.setExpenditure(model.getFilteredExpenditureList().get(0), editedExpenditure);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Expenditure lastExpenditure = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastPerson = Index.fromOneBased(model.getFilteredExpenditureList().size());
+        Expenditure lastExpenditure = model.getFilteredExpenditureList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastExpenditure);
         Expenditure editedExpenditure = personInList.withInfo(VALID_INFO_BOB).withId(VALID_ID_BOB)
@@ -73,7 +73,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        Expenditure editedExpenditure = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Expenditure editedExpenditure = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedExpenditure);
 
@@ -86,7 +86,7 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Expenditure expenditureInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Expenditure expenditureInFilteredList = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
         Expenditure editedExpenditure = new PersonBuilder(expenditureInFilteredList).withInfo(VALID_INFO_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withInfo(VALID_INFO_BOB).build());
@@ -94,14 +94,14 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedExpenditure);
 
         Model expectedModel = new ModelManager(new Account(model.getAccount()), new UserPrefs());
-        expectedModel.setExpenditure(model.getFilteredPersonList().get(0), editedExpenditure);
+        expectedModel.setExpenditure(model.getFilteredExpenditureList().get(0), editedExpenditure);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Expenditure firstExpenditure = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Expenditure firstExpenditure = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstExpenditure).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
@@ -113,7 +113,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit expenditure in filtered list into a duplicate in address book
-        Expenditure expenditureInList = model.getAccount().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Expenditure expenditureInList = model.getAccount().getExpenditureList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(expenditureInList).build());
 
@@ -122,11 +122,11 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredExpenditureList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withInfo(VALID_INFO_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EXPENDITURE_DISPLAYED_INDEX);
     }
 
     /**
@@ -138,12 +138,12 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAccount().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAccount().getExpenditureList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withInfo(VALID_INFO_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EXPENDITURE_DISPLAYED_INDEX);
     }
 
     @Test

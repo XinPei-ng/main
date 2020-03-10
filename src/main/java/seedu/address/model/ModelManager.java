@@ -35,7 +35,7 @@ public class ModelManager implements Model {
         this.account = new Account(account);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        filteredExpenditures = new FilteredList<>(this.account.getPersonList());
+        filteredExpenditures = new FilteredList<>(this.account.getExpenditureList());
 
     }
 
@@ -106,7 +106,7 @@ public class ModelManager implements Model {
     public void addExpenditure(Expenditure expenditure) {
         account.addAccount(expenditure);
 
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredExpenditureList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -122,12 +122,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Expenditure> getFilteredPersonList() {
+    public ObservableList<Expenditure> getFilteredExpenditureList() {
         return filteredExpenditures;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Expenditure> predicate) {
+    public void updateFilteredExpenditureList(Predicate<Expenditure> predicate) {
         requireNonNull(predicate);
         filteredExpenditures.setPredicate(predicate);
     }

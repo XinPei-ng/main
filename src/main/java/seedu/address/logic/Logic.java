@@ -32,7 +32,7 @@ public interface Logic {
     ReadOnlyAccount getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Expenditure> getFilteredPersonList();
+    ObservableList<Expenditure> getFilteredExpenditureList();
 
     /**
      * Returns the user prefs' address book file path.

@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Expenditure expenditureInList = model.getAccount().getPersonList().get(0);
+        Expenditure expenditureInList = model.getAccount().getExpenditureList().get(0);
         assertCommandFailure(new AddCommand(expenditureInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

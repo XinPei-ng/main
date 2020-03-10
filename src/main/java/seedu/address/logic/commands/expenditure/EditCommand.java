@@ -73,10 +73,10 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Expenditure> lastShownList = model.getFilteredPersonList();
+        List<Expenditure> lastShownList = model.getFilteredExpenditureList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EXPENDITURE_DISPLAYED_INDEX);
         }
 
         Expenditure expenditureToEdit = lastShownList.get(index.getZeroBased());
@@ -87,7 +87,7 @@ public class EditCommand extends Command {
         }
 
         model.setExpenditure(expenditureToEdit, editedExpenditure);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredExpenditureList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedExpenditure));
     }
 

@@ -78,11 +78,11 @@ public interface Model {
     void setExpenditure(Expenditure target, Expenditure editedExpenditure);
 
     /** Returns an unmodifiable view of the filtered expenditure list */
-    ObservableList<Expenditure> getFilteredPersonList();
+    ObservableList<Expenditure> getFilteredExpenditureList();
 
     /**
      * Updates the filter of the filtered expenditure list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Expenditure> predicate);
+    void updateFilteredExpenditureList(Predicate<Expenditure> predicate);
 }

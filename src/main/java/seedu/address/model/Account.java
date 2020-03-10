@@ -53,7 +53,7 @@ public class Account implements ReadOnlyAccount {
      */
     public void resetData(ReadOnlyAccount newData) {
         requireNonNull(newData);
-        setAccount(newData.getPersonList());
+        setAccount(newData.getExpenditureList());
     }
 
     //// expenditure-level operations
@@ -106,7 +106,7 @@ public class Account implements ReadOnlyAccount {
     }
 
     @Override
-    public ObservableList<Expenditure> getPersonList() {
+    public ObservableList<Expenditure> getExpenditureList() {
         return persons.asUnmodifiableObservableList();
     }
 

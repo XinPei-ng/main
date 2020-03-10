@@ -28,7 +28,7 @@ public class AccountTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), account.getPersonList());
+        assertEquals(Collections.emptyList(), account.getExpenditureList());
     }
 
     @Test
@@ -77,8 +77,8 @@ public class AccountTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> account.getPersonList().remove(0));
+    public void getExpenditureList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> account.getExpenditureList().remove(0));
     }
 
     /**
@@ -92,7 +92,7 @@ public class AccountTest {
         }
 
         @Override
-        public ObservableList<Expenditure> getPersonList() {
+        public ObservableList<Expenditure> getExpenditureList() {
             return expenditures;
         }
     }
