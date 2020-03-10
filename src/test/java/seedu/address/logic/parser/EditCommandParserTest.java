@@ -38,8 +38,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.expenditure.EditCommand;
+import seedu.address.logic.commands.expenditure.EditCommand.EditPersonDescriptor;
 
 import seedu.address.model.expenditure.Amount;
 import seedu.address.model.expenditure.Date;

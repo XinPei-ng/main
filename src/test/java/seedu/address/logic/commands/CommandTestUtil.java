@@ -17,6 +17,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.expenditure.EditCommand;
 import seedu.address.model.Account;
 import seedu.address.model.Model;
 import seedu.address.model.expenditure.Expenditure;

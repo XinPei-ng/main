@@ -1,7 +1,9 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.account;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Account;
 import seedu.address.model.Model;
 

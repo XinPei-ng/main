@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.expenditure.EditCommand.EditPersonDescriptor;
 
 import seedu.address.model.expenditure.Amount;
 import seedu.address.model.expenditure.Date;
