@@ -36,8 +36,8 @@ public class GeneralLevelParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case ExpEditCommand.COMMAND_WORD:
+            return new ExpEditCommandParser().parse(arguments);
 
         case ExpDeleteCommand.COMMAND_WORD:
             return new ExpDeleteCommandParser().parse(arguments);

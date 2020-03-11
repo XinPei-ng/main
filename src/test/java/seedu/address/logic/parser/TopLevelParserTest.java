@@ -16,9 +16,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.account.ClearCommand;
 import seedu.address.logic.commands.account.ListCommand;
 import seedu.address.logic.commands.expenditure.AddCommand;
-import seedu.address.logic.commands.expenditure.EditCommand;
-import seedu.address.logic.commands.expenditure.EditCommand.EditPersonDescriptor;
+
 import seedu.address.logic.commands.expenditure.ExpDeleteCommand;
+import seedu.address.logic.commands.expenditure.ExpEditCommand;
+import seedu.address.logic.commands.expenditure.ExpEditCommand.EditExpenditureDescriptor;
 import seedu.address.logic.commands.expenditure.ExpFindCommand;
 import seedu.address.logic.commands.general.ExitCommand;
 import seedu.address.logic.commands.general.HelpCommand;
@@ -57,10 +58,10 @@ public class TopLevelParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Expenditure person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditExpenditureDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        ExpEditCommand command = (ExpEditCommand) parser.parseCommand(ExpEditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new ExpEditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test

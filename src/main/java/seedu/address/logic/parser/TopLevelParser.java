@@ -10,15 +10,15 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.account.ClearCommand;
 import seedu.address.logic.commands.account.ListCommand;
 import seedu.address.logic.commands.expenditure.AddCommand;
-import seedu.address.logic.commands.expenditure.EditCommand;
 import seedu.address.logic.commands.expenditure.ExpDeleteCommand;
+import seedu.address.logic.commands.expenditure.ExpEditCommand;
 import seedu.address.logic.commands.expenditure.ExpFindCommand;
 import seedu.address.logic.commands.general.ExitCommand;
 import seedu.address.logic.commands.general.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.expenditure.AddCommandParser;
-import seedu.address.logic.parser.expenditure.EditCommandParser;
 import seedu.address.logic.parser.expenditure.ExpDeleteCommandParser;
+import seedu.address.logic.parser.expenditure.ExpEditCommandParser;
 import seedu.address.logic.parser.expenditure.ExpFindCommandParser;
 
 /**
@@ -51,8 +51,8 @@ public class TopLevelParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case ExpEditCommand.COMMAND_WORD:
+            return new ExpEditCommandParser().parse(arguments);
 
         case ExpDeleteCommand.COMMAND_WORD:
             return new ExpDeleteCommandParser().parse(arguments);

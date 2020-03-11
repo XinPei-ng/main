@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.expenditure.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.expenditure.ExpEditCommand.EditExpenditureDescriptor;
 
 import seedu.address.model.expenditure.Amount;
 import seedu.address.model.expenditure.Date;
@@ -14,25 +14,25 @@ import seedu.address.model.expenditure.Info;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditExpenditureDescriptor objects.
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditExpenditureDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditExpenditureDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditExpenditureDescriptor descriptor) {
+        this.descriptor = new EditExpenditureDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code expenditure}'s details
+     * Returns an {@code EditExpenditureDescriptor} with fields containing {@code expenditure}'s details
      */
     public EditPersonDescriptorBuilder(Expenditure expenditure) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditExpenditureDescriptor();
         descriptor.setInfo(expenditure.getInfo());
         descriptor.setId(expenditure.getId());
         descriptor.setAmount(expenditure.getAmount());
@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Info} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Info} of the {@code EditExpenditureDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withInfo(String info) {
         descriptor.setInfo(new Info(info));
@@ -49,7 +49,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Id} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Id} of the {@code EditExpenditureDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withId(String id) {
         descriptor.setId(new Id(id));
@@ -57,7 +57,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Amount} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Amount} of the {@code EditExpenditureDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAmount(double amount) {
         descriptor.setAmount(new Amount(amount));
@@ -65,7 +65,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Date} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Date} of the {@code EditExpenditureDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withDate(String address) {
         descriptor.setDate(new Date(address));
@@ -73,7 +73,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditExpenditureDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
@@ -82,7 +82,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditExpenditureDescriptor build() {
         return descriptor;
     }
 }

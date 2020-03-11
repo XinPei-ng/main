@@ -34,7 +34,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing expenditure in the address book.
  */
-public class EditCommand extends Command {
+public class ExpEditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -51,23 +51,23 @@ public class EditCommand extends Command {
             + PREFIX_ID + "91234567 "
             + PREFIX_AMOUNT + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Expenditure: %1$s";
+    public static final String MESSAGE_EDIT_EXPENDITURE_SUCCESS = "Edited Expenditure: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the $AVE IT.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditExpenditureDescriptor editExpenditureDescriptor;
 
     /**
      * @param index of the expenditure in the filtered expenditure list to edit
-     * @param editPersonDescriptor details to edit the expenditure with
+     * @param editExpenditureDescriptor details to edit the expenditure with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public ExpEditCommand(Index index, EditExpenditureDescriptor editExpenditureDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editExpenditureDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editExpenditureDescriptor = new EditExpenditureDescriptor(editExpenditureDescriptor);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class EditCommand extends Command {
         }
 
         Expenditure expenditureToEdit = lastShownList.get(index.getZeroBased());
-        Expenditure editedExpenditure = createEditedPerson(expenditureToEdit, editPersonDescriptor);
+        Expenditure editedExpenditure = createEditedExpenditure(expenditureToEdit, editExpenditureDescriptor);
 
         if (!expenditureToEdit.isSamePerson(editedExpenditure) && model.hasExpenditure(editedExpenditure)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -88,22 +88,22 @@ public class EditCommand extends Command {
 
         model.setExpenditure(expenditureToEdit, editedExpenditure);
         model.updateFilteredExpenditureList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedExpenditure));
+        return new CommandResult(String.format(MESSAGE_EDIT_EXPENDITURE_SUCCESS, editedExpenditure));
     }
 
     /**
      * Creates and returns a {@code Expenditure} with the details of {@code expenditureToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editExpenditureDescriptor}.
      */
-    private static Expenditure createEditedPerson(Expenditure expenditureToEdit,
-                                                  EditPersonDescriptor editPersonDescriptor) {
+    private static Expenditure createEditedExpenditure(Expenditure expenditureToEdit,
+                                                       EditExpenditureDescriptor editExpenditureDescriptor) {
         assert expenditureToEdit != null;
 
-        Info updatedInfo = editPersonDescriptor.getInfo().orElse(expenditureToEdit.getInfo());
-        Id updatedId = editPersonDescriptor.getId().orElse(expenditureToEdit.getId());
-        Amount updatedAmount = editPersonDescriptor.getAmount().orElse(expenditureToEdit.getAmount());
-        Date updatedDate = editPersonDescriptor.getDate().orElse(expenditureToEdit.getDate());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(expenditureToEdit.getTags());
+        Info updatedInfo = editExpenditureDescriptor.getInfo().orElse(expenditureToEdit.getInfo());
+        Id updatedId = editExpenditureDescriptor.getId().orElse(expenditureToEdit.getId());
+        Amount updatedAmount = editExpenditureDescriptor.getAmount().orElse(expenditureToEdit.getAmount());
+        Date updatedDate = editExpenditureDescriptor.getDate().orElse(expenditureToEdit.getDate());
+        Set<Tag> updatedTags = editExpenditureDescriptor.getTags().orElse(expenditureToEdit.getTags());
         return new Expenditure(updatedInfo, updatedId, updatedAmount, updatedDate, updatedTags);
     }
 
@@ -115,34 +115,34 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof ExpEditCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        ExpEditCommand e = (ExpEditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editExpenditureDescriptor.equals(e.editExpenditureDescriptor);
     }
 
     /**
      * Stores the details to edit the expenditure with. Each non-empty field value will replace the
      * corresponding field value of the expenditure.
      */
-    public static class EditPersonDescriptor {
+    public static class EditExpenditureDescriptor {
         private Info info;
         private Id id;
         private Amount amount;
         private Date date;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditExpenditureDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditExpenditureDescriptor(EditExpenditureDescriptor toCopy) {
             setInfo(toCopy.info);
             setId(toCopy.id);
             setAmount(toCopy.amount);
@@ -214,12 +214,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditExpenditureDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditExpenditureDescriptor e = (EditExpenditureDescriptor) other;
 
             return getInfo().equals(e.getInfo())
                     && getId().equals(e.getId())

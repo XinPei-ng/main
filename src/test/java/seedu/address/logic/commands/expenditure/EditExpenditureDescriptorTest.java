@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.expenditure.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.expenditure.ExpEditCommand.EditExpenditureDescriptor;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditExpenditureDescriptorTest {
@@ -20,7 +20,7 @@ public class EditExpenditureDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
+        EditExpenditureDescriptor descriptorWithSameValues = new EditExpenditureDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,7 +36,8 @@ public class EditExpenditureDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different info -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withInfo(VALID_INFO_BOB).build();
+        EditExpenditureDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withInfo(VALID_INFO_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different id -> returns false
