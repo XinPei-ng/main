@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.account.ClearCommand;
+import seedu.address.logic.commands.account.AccClearCommand;
 import seedu.address.logic.commands.expenditure.ExpEditCommand.EditExpenditureDescriptor;
 import seedu.address.model.Account;
 import seedu.address.model.Model;
@@ -167,7 +167,7 @@ public class ExpEditCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new AccClearCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new ExpEditCommand(INDEX_SECOND_PERSON, DESC_AMY)));

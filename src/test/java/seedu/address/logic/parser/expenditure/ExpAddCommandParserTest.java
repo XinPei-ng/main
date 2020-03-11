@@ -31,7 +31,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.expenditure.AddCommand;
+import seedu.address.logic.commands.expenditure.ExpAddCommand;
 
 import seedu.address.model.expenditure.Amount;
 import seedu.address.model.expenditure.Date;
@@ -42,7 +42,7 @@ import seedu.address.model.expenditure.Info;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandParserTest {
+public class ExpAddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
@@ -50,23 +50,23 @@ public class AddCommandParserTest {
         Expenditure expectedExpenditure = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + INFO_DESC_BOB + ID_DESC_BOB + AMOUNT_DESC_BOB
-                + DATE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedExpenditure));
+                + DATE_DESC_BOB + TAG_DESC_FRIEND, new ExpAddCommand(expectedExpenditure));
 
         // multiple infos - last info accepted
         assertParseSuccess(parser, INFO_DESC_AMY + INFO_DESC_BOB + ID_DESC_BOB + AMOUNT_DESC_BOB
-                + DATE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedExpenditure));
+                + DATE_DESC_BOB + TAG_DESC_FRIEND, new ExpAddCommand(expectedExpenditure));
 
         // multiple ids - last id accepted
         assertParseSuccess(parser, INFO_DESC_BOB + ID_DESC_AMY + ID_DESC_BOB + AMOUNT_DESC_BOB
-                + DATE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedExpenditure));
+                + DATE_DESC_BOB + TAG_DESC_FRIEND, new ExpAddCommand(expectedExpenditure));
 
         // multiple amounts - last amount accepted
         assertParseSuccess(parser, INFO_DESC_BOB + ID_DESC_BOB + AMOUNT_DESC_AMY + AMOUNT_DESC_BOB
-                + DATE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedExpenditure));
+                + DATE_DESC_BOB + TAG_DESC_FRIEND, new ExpAddCommand(expectedExpenditure));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, INFO_DESC_BOB + ID_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_AMY
-                + DATE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedExpenditure));
+                + DATE_DESC_BOB + TAG_DESC_FRIEND, new ExpAddCommand(expectedExpenditure));
 
         // multiple tags - all accepted
         Expenditure expectedExpenditureMultipleTags = new PersonBuilder(BOB)
@@ -74,7 +74,7 @@ public class AddCommandParserTest {
                 .build();
 
         assertParseSuccess(parser, INFO_DESC_BOB + ID_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedExpenditureMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new ExpAddCommand(expectedExpenditureMultipleTags));
 
     }
 
@@ -83,12 +83,12 @@ public class AddCommandParserTest {
         // zero tags
         Expenditure expectedExpenditure = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, INFO_DESC_AMY + ID_DESC_AMY + AMOUNT_DESC_AMY + DATE_DESC_AMY,
-                new AddCommand(expectedExpenditure));
+                new ExpAddCommand(expectedExpenditure));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExpAddCommand.MESSAGE_USAGE);
 
         // missing info prefix
         assertParseFailure(parser, VALID_INFO_BOB + ID_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB,
@@ -140,6 +140,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + INFO_DESC_BOB + ID_DESC_BOB + AMOUNT_DESC_BOB
                 + DATE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExpAddCommand.MESSAGE_USAGE));
     }
 }

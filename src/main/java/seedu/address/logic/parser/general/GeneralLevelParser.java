@@ -33,7 +33,7 @@ public class GeneralLevelParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
         /*
-        case AddCommand.COMMAND_WORD:
+        case ExpAddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
         case ExpEditCommand.COMMAND_WORD:
@@ -42,14 +42,14 @@ public class GeneralLevelParser {
         case ExpDeleteCommand.COMMAND_WORD:
             return new ExpDeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case AccClearCommand.COMMAND_WORD:
+            return new AccClearCommand();
 
         case ExpFindCommand.COMMAND_WORD:
             return new ExpFindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case AccListCommand.COMMAND_WORD:
+            return new AccListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

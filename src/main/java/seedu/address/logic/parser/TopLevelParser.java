@@ -7,9 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.account.ClearCommand;
-import seedu.address.logic.commands.account.ListCommand;
-import seedu.address.logic.commands.expenditure.AddCommand;
+import seedu.address.logic.commands.account.AccClearCommand;
+import seedu.address.logic.commands.account.AccListCommand;
+import seedu.address.logic.commands.expenditure.ExpAddCommand;
 import seedu.address.logic.commands.expenditure.ExpDeleteCommand;
 import seedu.address.logic.commands.expenditure.ExpEditCommand;
 import seedu.address.logic.commands.expenditure.ExpFindCommand;
@@ -48,7 +48,7 @@ public class TopLevelParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case ExpAddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
         case ExpEditCommand.COMMAND_WORD:
@@ -57,14 +57,14 @@ public class TopLevelParser {
         case ExpDeleteCommand.COMMAND_WORD:
             return new ExpDeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case AccClearCommand.COMMAND_WORD:
+            return new AccClearCommand();
 
         case ExpFindCommand.COMMAND_WORD:
             return new ExpFindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case AccListCommand.COMMAND_WORD:
+            return new AccListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.account.ClearCommand;
-import seedu.address.logic.commands.account.ListCommand;
-import seedu.address.logic.commands.expenditure.AddCommand;
+import seedu.address.logic.commands.account.AccClearCommand;
+import seedu.address.logic.commands.account.AccListCommand;
+import seedu.address.logic.commands.expenditure.ExpAddCommand;
 
 import seedu.address.logic.commands.expenditure.ExpDeleteCommand;
 import seedu.address.logic.commands.expenditure.ExpEditCommand;
@@ -37,14 +37,14 @@ public class TopLevelParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Expenditure expenditure = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(expenditure));
-        assertEquals(new AddCommand(expenditure), command);
+        ExpAddCommand command = (ExpAddCommand) parser.parseCommand(PersonUtil.getAddCommand(expenditure));
+        assertEquals(new ExpAddCommand(expenditure), command);
     }
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(AccClearCommand.COMMAND_WORD) instanceof AccClearCommand);
+        assertTrue(parser.parseCommand(AccClearCommand.COMMAND_WORD + " 3") instanceof AccClearCommand);
     }
 
     @Test
@@ -86,8 +86,8 @@ public class TopLevelParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(AccListCommand.COMMAND_WORD) instanceof AccListCommand);
+        assertTrue(parser.parseCommand(AccListCommand.COMMAND_WORD + " 3") instanceof AccListCommand);
     }
 
     @Test

@@ -16,7 +16,7 @@ import seedu.address.model.expenditure.Expenditure;
 /**
  * Adds a expenditure to the address book.
  */
-public class AddCommand extends Command {
+public class ExpAddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -41,9 +41,9 @@ public class AddCommand extends Command {
     private final Expenditure toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Expenditure}
+     * Creates an ExpAddCommand to add the specified {@code Expenditure}
      */
-    public AddCommand(Expenditure expenditure) {
+    public ExpAddCommand(Expenditure expenditure) {
         requireNonNull(expenditure);
         toAdd = expenditure;
     }
@@ -63,7 +63,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof ExpAddCommand // instanceof handles nulls
+                && toAdd.equals(((ExpAddCommand) other).toAdd));
     }
 }

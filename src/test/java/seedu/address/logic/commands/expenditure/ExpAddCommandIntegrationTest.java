@@ -14,9 +14,9 @@ import seedu.address.model.expenditure.Expenditure;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code ExpAddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class ExpAddCommandIntegrationTest {
 
     private Model model;
 
@@ -32,14 +32,14 @@ public class AddCommandIntegrationTest {
         expectedModel.addExpenditure(validExpenditure);
 
 
-        assertCommandSuccess(new AddCommand(validExpenditure), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validExpenditure), expectedModel);
+        assertCommandSuccess(new ExpAddCommand(validExpenditure), model,
+                String.format(ExpAddCommand.MESSAGE_SUCCESS, validExpenditure), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Expenditure expenditureInList = model.getAccount().getExpenditureList().get(0);
-        assertCommandFailure(new AddCommand(expenditureInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new ExpAddCommand(expenditureInList), model, ExpAddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.expenditure.AddCommand;
+import seedu.address.logic.commands.expenditure.ExpAddCommand;
 import seedu.address.logic.commands.expenditure.ExpEditCommand.EditExpenditureDescriptor;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.model.tag.Tag;
@@ -22,7 +22,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code expenditure}.
      */
     public static String getAddCommand(Expenditure expenditure) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(expenditure);
+        return ExpAddCommand.COMMAND_WORD + " " + getPersonDetails(expenditure);
     }
 
     /**

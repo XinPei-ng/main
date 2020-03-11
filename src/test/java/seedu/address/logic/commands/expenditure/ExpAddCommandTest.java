@@ -24,11 +24,11 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.expenditure.Expenditure;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class ExpAddCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new ExpAddCommand(null));
     }
 
     @Test
@@ -36,33 +36,34 @@ public class AddCommandTest {
         ModelStubAcceptingExpenditureAdded modelStub = new ModelStubAcceptingExpenditureAdded();
         Expenditure validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new ExpAddCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(String.format(ExpAddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Expenditure validExpenditure = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validExpenditure);
+        ExpAddCommand expAddCommand = new ExpAddCommand(validExpenditure);
         ModelStub modelStub = new ModelStubWithExpenditure(validExpenditure);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                ExpAddCommand.MESSAGE_DUPLICATE_PERSON, () -> expAddCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Expenditure alice = new PersonBuilder().withInfo("Alice").build();
         Expenditure bob = new PersonBuilder().withInfo("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        ExpAddCommand addAliceCommand = new ExpAddCommand(alice);
+        ExpAddCommand addBobCommand = new ExpAddCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        ExpAddCommand addAliceCommandCopy = new ExpAddCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false

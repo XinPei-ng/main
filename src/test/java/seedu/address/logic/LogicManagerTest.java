@@ -20,9 +20,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.account.ListCommand;
+import seedu.address.logic.commands.account.AccListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.expenditure.AddCommand;
+import seedu.address.logic.commands.expenditure.ExpAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -66,8 +66,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = AccListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, AccListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class LogicManagerTest {
 
         // Execute add command
 
-        String addCommand = AddCommand.COMMAND_WORD + INFO_DESC_AMY + ID_DESC_AMY + AMOUNT_DESC_AMY
+        String addCommand = ExpAddCommand.COMMAND_WORD + INFO_DESC_AMY + ID_DESC_AMY + AMOUNT_DESC_AMY
                 + DATE_DESC_AMY;
         Expenditure expectedExpenditure = new PersonBuilder(AMY).withTags().build();
 
