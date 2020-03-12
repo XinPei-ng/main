@@ -19,7 +19,6 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INFO_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -43,7 +42,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class ExpAddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private ExpAddCommandParser parser = new ExpAddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -100,10 +99,6 @@ public class ExpAddCommandParserTest {
 
         // missing amount prefix
         assertParseFailure(parser, INFO_DESC_BOB + ID_DESC_BOB + VALID_AMOUNT_BOB + DATE_DESC_BOB,
-                expectedMessage);
-
-        // missing date prefix
-        assertParseFailure(parser, INFO_DESC_BOB + ID_DESC_BOB + AMOUNT_DESC_BOB + VALID_DATE_BOB,
                 expectedMessage);
 
         // all prefixes missing

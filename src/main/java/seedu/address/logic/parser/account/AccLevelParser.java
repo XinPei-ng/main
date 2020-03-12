@@ -34,7 +34,7 @@ public class AccLevelParser {
         switch (commandWord) {
         /*
         case ExpAddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new ExpAddCommandParser().parse(arguments);
 
         case ExpEditCommand.COMMAND_WORD:
             return new ExpEditCommandParser().parse(arguments);

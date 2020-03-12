@@ -16,7 +16,7 @@ import seedu.address.logic.commands.expenditure.ExpFindCommand;
 import seedu.address.logic.commands.general.ExitCommand;
 import seedu.address.logic.commands.general.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.expenditure.AddCommandParser;
+import seedu.address.logic.parser.expenditure.ExpAddCommandParser;
 import seedu.address.logic.parser.expenditure.ExpDeleteCommandParser;
 import seedu.address.logic.parser.expenditure.ExpEditCommandParser;
 import seedu.address.logic.parser.expenditure.ExpFindCommandParser;
@@ -49,7 +49,7 @@ public class TopLevelParser {
         switch (commandWord) {
 
         case ExpAddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new ExpAddCommandParser().parse(arguments);
 
         case ExpEditCommand.COMMAND_WORD:
             return new ExpEditCommandParser().parse(arguments);

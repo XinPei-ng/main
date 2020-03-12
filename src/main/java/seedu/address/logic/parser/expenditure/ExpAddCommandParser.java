@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -27,7 +28,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new ExpAddCommand object
  */
-public class AddCommandParser implements Parser<ExpAddCommand> {
+public class ExpAddCommandParser implements Parser<ExpAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ExpAddCommand
@@ -38,7 +39,7 @@ public class AddCommandParser implements Parser<ExpAddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_INFO, PREFIX_ID, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_INFO, PREFIX_DATE, PREFIX_ID, PREFIX_AMOUNT)
+        if (!arePrefixesPresent(argMultimap, PREFIX_INFO, PREFIX_ID, PREFIX_AMOUNT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExpAddCommand.MESSAGE_USAGE));
         }
@@ -47,7 +48,7 @@ public class AddCommandParser implements Parser<ExpAddCommand> {
         Info info = ParserUtil.parseInfo(argMultimap.getValue(PREFIX_INFO).get());
         Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElseGet(() -> LocalDate.now().toString()));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Expenditure expenditure = new Expenditure(info, id, amount, date, tagList);

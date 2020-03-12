@@ -25,7 +25,7 @@ public class ExpAddCommand extends Command {
             + PREFIX_INFO + "INFO "
             + PREFIX_ID + "ID "
             + PREFIX_AMOUNT + "AMOUNT "
-            + PREFIX_DATE + "DATE "
+            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INFO + "John Doe "
